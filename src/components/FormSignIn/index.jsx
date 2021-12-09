@@ -1,22 +1,21 @@
-import Api from '../../services/Api';
+import Api from '../../services/Api'
 import * as yup from 'yup'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
-import { toast, Toaster } from 'react-hot-toast';
+import { toast } from 'react-hot-toast'
 
 
 import { useHistory } from 'react-router-dom'
+
 const FormSignIn = () => {
  
     const history = useHistory()
 
 
     const schema = yup.object().shape({
-        username: yup.string()
-        .required('Username obrigatório'),
+        username: yup.string().required('Username obrigatório'),
 
-        password: yup.string()
-        .required('Senha obrigatória')
+        password: yup.string().required('Senha obrigatória').min(6,'Minimo seis digitos')
     })
 
     const {
@@ -64,21 +63,16 @@ const FormSignIn = () => {
                 <input
                 placeholder='Digite seu username'
                 {...register('username')}/>
-                
                 <span>{errors.password?.message}</span>
                 <input
                 placeholder='Digite sua senha'
                 {...register('password')}/>
-                
-
                 <button type='submit'>Logar</button>
-           
             </form>  
                 <p>Criar uma Página para montar seus 
                     <strong> habitos e grupos</strong>
                 </p>
-                   
-                    <button onClick={() => history.push('/register')}>Cadastrar</button>
+                <button onClick={() => history.push('/register')}>Cadastrar</button>
         </div>
 
        
