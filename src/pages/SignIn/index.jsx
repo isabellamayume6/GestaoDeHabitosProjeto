@@ -1,7 +1,11 @@
+import FormSignIn from "../../components/FormSignIn";
+
 const SignIn = () => {
     return (
         <div>
-            <h1>entrar</h1>
+            <h1>Sign In</h1>
+
+            <FormSignIn/>
         </div>
     )
 }
