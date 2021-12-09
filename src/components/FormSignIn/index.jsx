@@ -2,16 +2,18 @@ import Api from '../../services/Api';
 import * as yup from 'yup'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
-import toast from 'react-hot-toast';
+import { toast, Toaster } from 'react-hot-toast';
 
+
+import { useHistory } from 'react-router-dom'
 const FormSignIn = () => {
  
-
+    const history = useHistory()
 
 
     const schema = yup.object().shape({
         username: yup.string()
-        .required('Email obrigatório'),
+        .required('Username obrigatório'),
 
         password: yup.string()
         .required('Senha obrigatória')
@@ -39,10 +41,15 @@ const FormSignIn = () => {
             // localStorage.setItem('@GestaoHabitos:token', JSON.stringify(token));
             // localStorage.setItem('@GestaoHabitos:token', JSON.stringify(user));
 
+
             console.log(response.data)
+            
+            history.push('/dashboard')
+
+           
         })
         .catch((err) => {
-            toast.error(err)
+            toast.error('Senha ou Username invalido')
             console.log(err)
         })
         
@@ -53,15 +60,16 @@ const FormSignIn = () => {
         <div>
            
             <form onSubmit={handleSubmit(onSubmit)}>
+                <span>{errors.username?.message}</span>
                 <input
                 placeholder='Digite seu username'
                 {...register('username')}/>
-                <p>{errors.username?.message}</p>
-
+                
+                <span>{errors.password?.message}</span>
                 <input
                 placeholder='Digite sua senha'
                 {...register('password')}/>
-                <p>{errors.password?.message}</p>
+                
 
                 <button type='submit'>Logar</button>
            
@@ -70,8 +78,10 @@ const FormSignIn = () => {
                     <strong> habitos e grupos</strong>
                 </p>
                    
-                    <button type='submit'>Cadastrar</button>
+                    <button onClick={() => history.push('/register')}>Cadastrar</button>
         </div>
+
+       
     )
   
 }
