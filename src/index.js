@@ -4,7 +4,7 @@ import "./index.css";
 import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
-import { mainTheme } from "./styles/themes";
+import { mainTheme } from "./Styles/themes";
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>

@@ -5,6 +5,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useHistory } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import Button from "../Button";
+import { ContainerForm } from './StyledForm.js'
 
 const FormSignUp = () => {
   const schema = yup.object().shape({
@@ -40,7 +41,7 @@ const FormSignUp = () => {
     console.log(data);
   };
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <ContainerForm onSubmit={handleSubmit(onSubmit)}>
       <h1>Cadastre-se</h1>
       <span>{errors.username?.message}</span>
       <input placeholder="Nome" {...register("username")} />
@@ -54,8 +55,11 @@ const FormSignUp = () => {
         type="password"
         {...register("confirm_password")}
       />
-      <Button type="submit">Conectar</Button>
-    </form>
+      <Button type="submit" secondary>Cadastrar</Button>
+      <p>Já possui uma conta?</p>
+      <Button onClick={() => history.push('/')}>Entrar</Button>
+
+    </ContainerForm >
   );
 };
 export default FormSignUp;
