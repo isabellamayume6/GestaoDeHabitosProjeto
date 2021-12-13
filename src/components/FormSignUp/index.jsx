@@ -43,7 +43,7 @@ const FormSignUp = () => {
   };
   return (
     <MainDesktop>
-      <ContainerForm ContainerForm ContainerForm ContainerForm onSubmit={handleSubmit(onSubmit)} >
+      <ContainerForm onSubmit={handleSubmit(onSubmit)} >
         <h1>Cadastre-se</h1>
         <span>{errors.username?.message}</span>
         <input placeholder="Nome" {...register("username")} />
