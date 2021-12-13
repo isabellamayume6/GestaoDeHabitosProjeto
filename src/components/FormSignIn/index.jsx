@@ -3,7 +3,7 @@ import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { toast } from "react-hot-toast";
-import { MainSi } from './StyledFormSI'
+import { MainSi, FormSI } from './StyledFormSI'
 
 import Button from "../Button";
 
@@ -52,24 +52,23 @@ const FormSignIn = () => {
 
   return (
     <MainSi>
-      <h1>Login</h1>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <span>{errors.username?.message}</span>
-        <input placeholder="Digite seu username" {...register("username")} />
-        <span>{errors.password?.message}</span>
-        <input placeholder="Digite sua senha" {...register("password")} />
-        <Button type="submit">Logar</Button>
-      </form>
-      {/* <p>
-        Criar uma Página para montar seus
-        <strong> habitos e grupos</strong>
-      </p> */}
-      <div className='footer'>
-        <p>Não possui uma conta?</p>
-        <Button secondary onClick={() => history.push("/register")}>
-          Cadastrar
-        </Button>
+      <div className='log'>
+        <h1>Login</h1>
+        <FormSI onSubmit={handleSubmit(onSubmit)}>
+          <span>{errors.username?.message}</span>
+          <input placeholder="Digite seu username" {...register("username")} />
+          <span>{errors.password?.message}</span>
+          <input placeholder="Digite sua senha" {...register("password")} />
+          <Button type="submit">Logar</Button>
+        </FormSI>
+        <div className='footer'>
+          <p>Não possui uma conta?</p>
+          <Button secondary onClick={() => history.push("/register")}>
+            Cadastrar
+          </Button>
+        </div>
       </div>
+      <img src="https://cdn.discordapp.com/attachments/842187276359434273/920022667829059584/imagelogin.webp" alt="" />
     </MainSi >
   );
 };
