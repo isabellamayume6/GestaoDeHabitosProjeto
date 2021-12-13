@@ -1,0 +1,28 @@
+.containerHabits {
+  background-color: #a6dafa;
+}
+
+.titleHabits {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.titleHabits h3 {
+  color: #006db1;
+}
+
+.button {
+  color: #006db1;
+  background-color: #a6dafa;
+  border: none;
+}
+
+.habitDescription h3 {
+  background-color: #006db1;
+  color: #a6dafa;
+  padding: 10px 5px;
+}
+
+.habitDescription span {
+}
