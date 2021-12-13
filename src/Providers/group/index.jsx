@@ -32,7 +32,7 @@ export const GroupProvider = ({ children }) => {
 
   const getGoalsGroup = (groupId) => {
     api
-      .get(`/gals/?group=${groupId}`, {
+      .get(`/goals/?group=${groupId}`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
