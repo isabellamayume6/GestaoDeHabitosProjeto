@@ -3,6 +3,7 @@ import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { toast } from "react-hot-toast";
+import { MainSi } from './StyledFormSI'
 
 import Button from "../Button";
 
@@ -50,7 +51,8 @@ const FormSignIn = () => {
   };
 
   return (
-    <div>
+    <MainSi>
+      <h1>Login</h1>
       <form onSubmit={handleSubmit(onSubmit)}>
         <span>{errors.username?.message}</span>
         <input placeholder="Digite seu username" {...register("username")} />
@@ -58,14 +60,17 @@ const FormSignIn = () => {
         <input placeholder="Digite sua senha" {...register("password")} />
         <Button type="submit">Logar</Button>
       </form>
-      <p>
+      {/* <p>
         Criar uma Página para montar seus
         <strong> habitos e grupos</strong>
-      </p>
-      <Button secondary onClick={() => history.push("/register")}>
-        Cadastrar
-      </Button>
-    </div>
+      </p> */}
+      <div className='footer'>
+        <p>Não possui uma conta?</p>
+        <Button secondary onClick={() => history.push("/register")}>
+          Cadastrar
+        </Button>
+      </div>
+    </MainSi >
   );
 };
 export default FormSignIn;
