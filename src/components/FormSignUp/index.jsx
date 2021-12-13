@@ -5,7 +5,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useHistory } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import Button from "../Button";
-import { ContainerForm } from './StyledForm.js'
+import { ContainerForm, MainDesktop } from './StyledForm.js'
+
 
 const FormSignUp = () => {
   const schema = yup.object().shape({
@@ -41,25 +42,27 @@ const FormSignUp = () => {
     console.log(data);
   };
   return (
-    <ContainerForm onSubmit={handleSubmit(onSubmit)}>
-      <h1>Cadastre-se</h1>
-      <span>{errors.username?.message}</span>
-      <input placeholder="Nome" {...register("username")} />
-      <span>{errors.email?.message}</span>
-      <input placeholder="e-mail" {...register("email")} />
-      <span>{errors.password?.message}</span>
-      <input placeholder="senha" type="password" {...register("password")} />
-      <span>{errors.confirm_password?.message}</span>
-      <input
-        placeholder="confirme senha"
-        type="password"
-        {...register("confirm_password")}
-      />
-      <Button type="submit" secondary>Cadastrar</Button>
-      <p>Já possui uma conta?</p>
-      <Button onClick={() => history.push('/')}>Entrar</Button>
-
-    </ContainerForm >
+    <MainDesktop>
+      <ContainerForm ContainerForm ContainerForm ContainerForm onSubmit={handleSubmit(onSubmit)} >
+        <h1>Cadastre-se</h1>
+        <span>{errors.username?.message}</span>
+        <input placeholder="Nome" {...register("username")} />
+        <span>{errors.email?.message}</span>
+        <input placeholder="e-mail" {...register("email")} />
+        <span>{errors.password?.message}</span>
+        <input placeholder="senha" type="password" {...register("password")} />
+        <span>{errors.confirm_password?.message}</span>
+        <input
+          placeholder="confirme senha"
+          type="password"
+          {...register("confirm_password")}
+        />
+        <Button type="submit" secondary>Cadastrar</Button>
+        <p>Já possui uma conta?</p>
+        <Button onClick={() => history.push('/')}>Entrar</Button>
+      </ContainerForm >
+      <img src='https://cdn.discordapp.com/attachments/842187276359434273/920022668093317150/imagesignin.png' alt='seila' />
+    </MainDesktop>
   );
 };
 export default FormSignUp;
