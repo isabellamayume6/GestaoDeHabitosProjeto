@@ -4,14 +4,13 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { toast } from "react-hot-toast";
 import { MainSi, FormSI } from './StyledFormSI'
-
 import Button from "../Button";
-
 import { useHistory } from "react-router-dom";
+
 
 const FormSignIn = () => {
   const history = useHistory();
-
+  //const { defineUser } = useAuth();
   const schema = yup.object().shape({
     username: yup.string().required("Username obrigatório"),
 
@@ -70,6 +69,7 @@ const FormSignIn = () => {
       </div>
       <img src="https://cdn.discordapp.com/attachments/842187276359434273/920022667829059584/imagelogin.webp" alt="" />
     </MainSi >
+
   );
 };
 export default FormSignIn;
