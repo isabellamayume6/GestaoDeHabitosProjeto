@@ -4,13 +4,10 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { toast } from "react-hot-toast";
 
-import { useAuth } from "../../Providers/auth";
-
 import { useHistory } from "react-router-dom";
 
 const FormSignIn = () => {
   const history = useHistory();
-  const auth = useAuth();
 
   const schema = yup.object().shape({
     username: yup.string().required("Username obrigatório"),
@@ -30,25 +27,18 @@ const FormSignIn = () => {
   });
 
   const onSubmit = (data) => {
-    // Api.post("/sessions/", data)
-    //   .then((response) => {
-    //     toast.success("Login Realizado");
-
-    //     // const { token } = response.data;
-    //     const token = response.data.access;
-
-    //     // localStorage.setItem('@GestaoHabitos:token', JSON.stringify(token));
-    //     localStorage.setItem("@GestaoHabitos:token", token);
-
-    //     console.log(response.data);
-
-    //     history.push("/dashboard");
-    //   })
-    //   .catch((err) => {
-    //     toast.error("Senha ou Username invalido");
-    //     console.log(err);
-    //   });
-    auth.access(data);
+    Api.post("/sessions/", data)
+      .then((response) => {
+        toast.success("Logado com sucesso!");
+        const token = response.data.access;
+        localStorage.setItem("@GestaoHabitos:token", JSON.stringify(token));
+        history.push("/dashboard");
+      })
+      .catch((err) => {
+        console.log(err);
+        toast.error("Nome do usuário ou senha inválidos!");
+      });
+    console.log(data);
   };
 
   return (

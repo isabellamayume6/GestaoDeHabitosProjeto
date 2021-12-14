@@ -1,22 +1,11 @@
-import { Redirect } from "react-router-dom";
-import { useContext } from "react";
-import CardHabits from "../../components/Habits";
+import CreateHabitForm from "../../components/CreateHabitForm";
+import HabitContainer from "../../components/HabitContainer";
 
-const Dashboard = () => {
+export const Dashboard = () => {
   return (
     <div>
-      <h1>dashboard</h1>
-      {/* <div className="habits-container">
-        {habits === undefined && (
-          <div className="container-habits">
-            <h2>Meus Hábitos</h2>
-            {habits.map((item) => {
-              return <CardHabits item={item} />;
-            })}
-          </div>
-        )}
-      </div> */}
+      <HabitContainer />
+      <CreateHabitForm />
     </div>
   );
 };
-export default Dashboard;

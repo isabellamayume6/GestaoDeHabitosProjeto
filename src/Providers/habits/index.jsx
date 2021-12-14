@@ -1,20 +1,19 @@
 import { createContext, useState, useContext } from "react";
-import api from "../../services/api";
+import Api from "../../services/api";
 import { useAuth } from "../auth";
 
 export const HabitsContext = createContext();
 
 export const HabitsProvider = ({ children }) => {
-  const [allHabits, setAllHabits] = useState([]);
+  const [allHabits, setAllHabits] = useState(["foi"]);
   const { userId } = useAuth();
 
   const createHabit = (token, data) => {
     data.user = userId;
 
-    api
-      .post("/habits/", data, {
-        headers: { Authorization: `Bearer ${token}` },
-      })
+    Api.post("/habits/", data, {
+      headers: { Authorization: `Bearer ${token}` },
+    })
       .then((response) => {
         console.log("response createHabit:", response);
       })
@@ -22,31 +21,28 @@ export const HabitsProvider = ({ children }) => {
   };
 
   const getHabits = (token) => {
-    api
-      .get("/habits/personal/", {
-        headers: { Authorization: `Bearer ${token}` },
-      })
+    Api.get("/habits/personal/", {
+      headers: { Authorization: `Bearer ${token}` },
+    })
       .then((response) => {
-        console.log("response getHabits:", response);
-        setAllHabits(response.data);
+        // console.log("response getHabits:", response);
+        return setAllHabits(response.data);
       })
       .catch((err) => console.log("Erro ao pegar hábitos!"));
   };
 
   const updateHabit = (token, data, habitId) => {
-    api
-      .patch(`/habits/${habitId}`, data, {
-        headers: { Authorization: `Bearer ${token}` },
-      })
+    Api.patch(`/habits/${habitId}`, data, {
+      headers: { Authorization: `Bearer ${token}` },
+    })
       .then((response) => console.log("response updateHabit:", response))
       .catch((err) => console.log("Erro ao modificar hábito!"));
   };
 
   const deleteHabit = (token, habitId) => {
-    api
-      .delete(`/habits/${habitId}`, {
-        headers: { Authorization: `Bearer ${token}` },
-      })
+    Api.delete(`/habits/${habitId}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    })
       .then((response) => console.log("response deleteHabit:", response))
       .catch((err) => console.log("Erro ao deletar hábito!"));
   };
