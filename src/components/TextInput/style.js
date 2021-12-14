@@ -7,8 +7,8 @@ export const InputContainer = styled.div`
       : props.secondary
       ? props.theme.colors.secondary.dark
       : props.theme.colors.primary.light};
-  /* border-radius: 4px; */
-  width: 100%;
+   /* border-radius: 4px;  */
+  width: 260px;
 
   .error-message {
     color: ${(props) => props.theme.colors.red.normal};
