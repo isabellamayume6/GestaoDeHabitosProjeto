@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import HabitsCard from "../HabitsCard";
-import { useAuth } from "../../providers/auth";
-import { useHabits } from "../../providers/habits";
+import { useAuth } from "../../Providers/auth";
+import { useHabits } from "../../Providers/habits";
 
 import "./style.css";
 

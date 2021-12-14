@@ -1,8 +1,8 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { useHabits } from "../../providers/habits";
-import { useAuth } from "../../providers/auth";
+import { useHabits } from "../../Providers/habits";
+import { useAuth } from "../../Providers/auth";
 
 const CreateHabitForm = () => {
   const schema = yup.object().shape({

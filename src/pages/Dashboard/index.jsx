@@ -1,7 +1,7 @@
 import CreateHabitForm from "../../components/CreateHabitForm";
 import HabitContainer from "../../components/HabitContainer";
 
-export const Dashboard = () => {
+const Dashboard = () => {
   return (
     <div>
       <HabitContainer />
@@ -9,3 +9,5 @@ export const Dashboard = () => {
     </div>
   );
 };
+
+export default Dashboard;

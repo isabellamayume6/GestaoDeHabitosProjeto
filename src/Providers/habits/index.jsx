@@ -1,5 +1,5 @@
 import { createContext, useState, useContext } from "react";
-import Api from "../../services/api";
+import Api from "../../services/Api";
 import { useAuth } from "../auth";
 
 export const HabitsContext = createContext();
