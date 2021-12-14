@@ -10,5 +10,11 @@ export const mainTheme = {
       normal: "#FF729F",
       light: "#FEE0E0",
     },
+    yellow: {
+      normal: "#FFF6B0",
+    },
+    green: {
+      normal: "#A3EDBA",
+    },
   },
 };
