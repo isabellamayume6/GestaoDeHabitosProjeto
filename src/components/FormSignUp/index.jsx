@@ -5,9 +5,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useHistory } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import Button from "../Button";
-import { ContainerForm, MainDesktop } from './StyledForm.js';
+import { ContainerForm, MainDesktop } from "./StyledForm.js";
 import TextInput from "../TextInput";
-
 
 const FormSignUp = () => {
   const schema = yup.object().shape({
@@ -16,7 +15,10 @@ const FormSignUp = () => {
       .string()
       .email("e-mail inválido!")
       .required("Campo obrigatório!"),
-    password: yup.string().required("Senha obrigatória!").min(6),
+    password: yup
+      .string()
+      .required("Senha obrigatória!")
+      .min(6, "Minimo de 6 caracteres"),
     confirm_password: yup
       .string()
       .oneOf([yup.ref("password"), null], "senhas diferentes")
@@ -44,7 +46,7 @@ const FormSignUp = () => {
   };
   return (
     <MainDesktop>
-      <ContainerForm onSubmit={handleSubmit(onSubmit)} >
+      <ContainerForm onSubmit={handleSubmit(onSubmit)}>
         <h1>Cadastre-se</h1>
         <TextInput
           secondary
@@ -82,11 +84,16 @@ const FormSignUp = () => {
           label="Confirme sua senha"
           register={register}
         />
-        <Button type="submit" secondary>Cadastrar</Button>
+        <Button type="submit" secondary>
+          Cadastrar
+        </Button>
         <p>Já possui uma conta?</p>
-        <Button onClick={() => history.push('/')}>Entrar</Button>
-      </ContainerForm >
-      <img src='https://cdn.discordapp.com/attachments/842187276359434273/920022668093317150/imagesignin.png' alt='seila' />
+        <Button onClick={() => history.push("/")}>Entrar</Button>
+      </ContainerForm>
+      <img
+        src="https://cdn.discordapp.com/attachments/842187276359434273/920022668093317150/imagesignin.png"
+        alt="seila"
+      />
     </MainDesktop>
   );
 };
