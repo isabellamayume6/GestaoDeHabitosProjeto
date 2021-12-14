@@ -67,14 +67,20 @@ export const Header = styled.div`
 `;
 
 export const AvatarContainer = styled.div`
-  display: inline-flex;
+  display: flex;
   position: relative;
+  align-items: center;
   .avatar {
+    outline: 3px solid
+      ${(props) =>
+        props.secondary
+          ? props.theme.colors.secondary.light
+          : props.theme.colors.primary.normal};
     width: 34px;
     aspect-ratio: 1;
     border-radius: 50%;
     background: ${(props) =>
-      props.secondary
+      !!props.secondary
         ? props.theme.colors.primary.normal
         : props.theme.colors.secondary.light};
     overflow: hidden;
@@ -98,5 +104,8 @@ export const Pill = styled.span`
   padding: 0.3em 0.7em;
   border-radius: 1rem;
   font-weight: bold;
-  background: ${(props) => (props.isCat ? "yellow" : "green")};
+  background: ${(props) =>
+    props.isCat
+      ? props.theme.colors.yellow.normal
+      : props.theme.colors.green.normal};
 `;

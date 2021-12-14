@@ -57,7 +57,7 @@ export default function Card({ secondary = false, isGroup = false, info }) {
               <span>{info.goals.length} </span>
             </div>
 
-            <AvatarContainer>
+            <AvatarContainer secondary={secondary}>
               {users.map((user) => (
                 <span className="avatar" key={user.id}>
                   <img src={`${url}${user.username}.svg`} alt="" />
