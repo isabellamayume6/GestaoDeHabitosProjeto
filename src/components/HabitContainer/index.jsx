@@ -11,7 +11,7 @@ const HabitContainer = () => {
 
   useEffect(() => {
     getHabits(JSON.parse(token));
-  });
+  }, []);
 
   console.log("allHabits", allHabits);
   return (

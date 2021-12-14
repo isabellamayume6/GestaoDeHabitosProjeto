@@ -5,9 +5,12 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { toast } from "react-hot-toast";
 
 import { useHistory } from "react-router-dom";
+import { useAuth } from "../../Providers/auth";
 
 const FormSignIn = () => {
   const history = useHistory();
+
+  const { defineUser } = useAuth();
 
   const schema = yup.object().shape({
     username: yup.string().required("Username obrigatório"),
@@ -33,6 +36,7 @@ const FormSignIn = () => {
         const token = response.data.access;
         localStorage.setItem("@GestaoHabitos:token", JSON.stringify(token));
         history.push("/dashboard");
+        defineUser(token);
       })
       .catch((err) => {
         console.log(err);

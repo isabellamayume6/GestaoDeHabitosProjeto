@@ -22,7 +22,7 @@ export const GroupProvider = ({ children }) => {
   const getUserGroups = () => {
     api
       .get("/groups/subscriptions/", {
-        header: { Authorization: `Bearer ${token}` },
+        headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
         console.log("response getUserGroups:", response.data);
@@ -44,7 +44,7 @@ export const GroupProvider = ({ children }) => {
   const getActivitiesGroup = (groupId) => {
     api
       .get(`/activities/?group=${groupId}`, {
-        header: { Authorization: `Bearer ${token}` },
+        headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
         console.log("response getActivitiesGroup:", response.data.results);
@@ -66,7 +66,7 @@ export const GroupProvider = ({ children }) => {
   const updateGroup = (data, groupId) => {
     api
       .patch(`/groups/${groupId}`, data, {
-        header: { Authorization: `Bearer ${token}` },
+        headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
         console.log("response updateGroup:", response);
@@ -76,8 +76,8 @@ export const GroupProvider = ({ children }) => {
 
   const subscribeGroup = (groupId) => {
     api
-      .post(`/groups/${groupId}/subscribe/`, {
-        header: { Authorization: `Bearer ${token}` },
+      .post(`/groups/${groupId}/subscribe/`, null, {
+        headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
         console.log("response subscribeGroup:", response);
@@ -88,7 +88,7 @@ export const GroupProvider = ({ children }) => {
   const unsubscribeGroup = (groupId) => {
     api
       .post(`/groups/${groupId}/unsubscribe/`, {
-        header: { Authorization: `Bearer ${token}` },
+        headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
         console.log("response unsubscribeGroup:", response);

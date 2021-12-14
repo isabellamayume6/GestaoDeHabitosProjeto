@@ -9,13 +9,16 @@ export const AuthProvider = ({ children }) => {
     localStorage.getItem("@GestaoHabitos:token") || ""
   );
 
-  const { user_id } = jwt_decode(token);
-
   // eslint-disable-next-line
-  const [userId, setUserId] = useState(user_id);
+  const [userId, setUserId] = useState("");
+
+  const defineUser = () => {
+    const { user_id } = jwt_decode(token);
+    setUserId(user_id);
+  };
 
   return (
-    <AuthContext.Provider value={{ token, userId }}>
+    <AuthContext.Provider value={{ token, userId, defineUser }}>
       {children}
     </AuthContext.Provider>
   );
