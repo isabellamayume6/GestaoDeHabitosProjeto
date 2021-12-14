@@ -16,5 +16,8 @@ export const mainTheme = {
     green: {
       normal: "#A3EDBA",
     },
+    red: {
+      normal: "#B20D30",
+    },
   },
 };
