@@ -3,8 +3,8 @@ import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { toast } from "react-hot-toast";
-import { MainSi, FormSI } from './StyledFormSI'
-import TextInput from "../TextInput"
+import { MainSi, FormSI } from "./StyledFormSI";
+import TextInput from "../TextInput";
 
 import Button from "../Button";
 
@@ -53,7 +53,7 @@ const FormSignIn = () => {
 
   return (
     <MainSi>
-      <div className='log'>
+      <div className="log">
         <h1>Login</h1>
         <FormSI onSubmit={handleSubmit(onSubmit)}>
           <TextInput
@@ -67,18 +67,22 @@ const FormSignIn = () => {
             error={errors.password?.message}
             label="Digite sua senha"
             register={register}
+            type="password"
           />
           <Button type="submit">Logar</Button>
         </FormSI>
-        <div className='footer'>
+        <div className="footer">
           <p>Não possui uma conta?</p>
           <Button secondary onClick={() => history.push("/register")}>
             Cadastrar
           </Button>
         </div>
       </div>
-      <img src="https://cdn.discordapp.com/attachments/842187276359434273/920022667829059584/imagelogin.webp" alt="" />
-    </MainSi >
+      <img
+        src="https://cdn.discordapp.com/attachments/842187276359434273/920022667829059584/imagelogin.webp"
+        alt=""
+      />
+    </MainSi>
   );
 };
 export default FormSignIn;
