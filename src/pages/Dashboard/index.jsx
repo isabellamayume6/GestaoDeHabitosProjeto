@@ -4,7 +4,7 @@ import Modal from "../../components/Modal";
 import { useState } from "react";
 
 const Dashboard = () => {
-  const [isGroup, setIsGroup] = useState(false);
+  const [isGroup, setIsGroup] = useState(true);
 
   return (
     <div>

@@ -5,7 +5,7 @@ import { useAuth } from "../auth";
 export const HabitsContext = createContext();
 
 export const HabitsProvider = ({ children }) => {
-  const [allHabits, setAllHabits] = useState(["foi"]);
+  const [allHabits, setAllHabits] = useState([]);
   const { userId } = useAuth();
 
   const createHabit = (token, data) => {
@@ -14,6 +14,7 @@ export const HabitsProvider = ({ children }) => {
     })
       .then((response) => {
         console.log("response createHabit:", response);
+        setAllHabits([...allHabits, response.data])
       })
       .catch((err) => console.log("Erro ao criar hábito!"));
   };
