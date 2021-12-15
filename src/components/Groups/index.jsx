@@ -18,7 +18,7 @@ const GroupContainer = () => {
       <ul>
         {userGroup.map((item) => {
           return (
-            <li>
+            <li key={item.id}>
               <Card secondary={false} isGroup={true} info={item} />
             </li>
           );
