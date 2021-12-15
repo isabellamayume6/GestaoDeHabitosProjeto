@@ -8,7 +8,7 @@ const HabitContainer = () => {
   const { token } = useAuth();
 
   useEffect(() => {
-    getHabits(JSON.parse(token));
+    getHabits(token);
   }, []);
 
   console.log("allHabits", allHabits);

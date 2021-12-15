@@ -9,8 +9,6 @@ export const HabitsProvider = ({ children }) => {
   const { userId } = useAuth();
 
   const createHabit = (token, data) => {
-    data.user = userId;
-
     Api.post("/habits/", data, {
       headers: { Authorization: `Bearer ${token}` },
     })

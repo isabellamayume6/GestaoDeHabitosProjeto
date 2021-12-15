@@ -37,7 +37,7 @@ const FormSignIn = () => {
       .then((response) => {
         toast.success("Logado com sucesso!");
         const token = response.data.access;
-        localStorage.setItem("@GestaoHabitos:token", JSON.stringify(token));
+        localStorage.setItem("@GestaoHabitos:token", token);
         history.push("/dashboard");
         defineUser(token);
       })

@@ -7,15 +7,20 @@ export const GroupContext = createContext();
 export const GroupProvider = ({ children }) => {
   const [allGroups, setAllGroups] = useState([]);
   const [userGroup, setUserGroup] = useState([]);
+  const [myGroups, setMyGroups] = useState([]);
 
   const { token } = useAuth();
 
-  const getAllGroups = () => {
+  const getAllGroups = (id) => {
     api
       .get("/groups/")
       .then((response) => {
         console.log("response getAllGroups", response);
         setAllGroups(response.data.results);
+        const groups = response.data.results.filter(
+          (item) => item.creator === id
+        );
+        setMyGroups(groups);
       })
       .catch((err) => console.log("Erro ao pegar todos os grupos!"));
   };
@@ -112,6 +117,7 @@ export const GroupProvider = ({ children }) => {
         updateGroup,
         subscribeGroup,
         unsubscribeGroup,
+        myGroups,
       }}
     >
       {children}
