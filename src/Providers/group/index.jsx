@@ -27,11 +27,12 @@ export const GroupProvider = ({ children }) => {
 
   const getUserGroups = () => {
     api
-      .get("/groups/subscriptions/", "", {
+      .get("/groups/subscriptions/", {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
         console.log("response getUserGroups:", response.data);
+        console.log(token);
         setUserGroup(response.data);
       })
       .catch((err) => console.log("Erro ao pegar os grupos do usuário!"));
@@ -70,7 +71,7 @@ export const GroupProvider = ({ children }) => {
       .catch((err) => console.log("Erro ao crear grupo!"));
   };
 
-  const updateGroup = (data, groupId) => {
+  const updateGroup = (token, data, groupId) => {
     api
       .patch(`/groups/${groupId}`, data, {
         headers: { Authorization: `Bearer ${token}` },
@@ -92,7 +93,7 @@ export const GroupProvider = ({ children }) => {
       .catch((err) => console.log("Erro ao se inscrver no grupo!"));
   };
 
-  const unsubscribeGroup = (groupId) => {
+  const unsubscribeGroup = (token, groupId) => {
     api
       .post(`/groups/${groupId}/unsubscribe/`, {
         headers: { Authorization: `Bearer ${token}` },
