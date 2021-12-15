@@ -18,7 +18,7 @@ const HabitContainer = () => {
       <ul>
         {allHabits.map((item) => {
           return (
-            <li>
+            <li key={item.id}>
               <Card secondary={false} isGroup={false} info={item} />
             </li>
           );
