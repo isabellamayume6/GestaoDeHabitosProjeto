@@ -57,13 +57,11 @@ const FormSignUp = () => {
         />
         <TextInput
           secondary
-          field={"e-mail"}
+          field={"email"}
           error={errors.email?.message}
           label="Digite o seu e-mail"
           register={register}
         />
-        {/* <span>{errors.password?.message}</span>
-        <input placeholder="senha" type="password" {...register("password")} /> */}
         <TextInput
           secondary
           field={"password"}
@@ -71,12 +69,6 @@ const FormSignUp = () => {
           label="Digite o sua senha"
           register={register}
         />
-        {/* <span>{errors.confirm_password?.message}</span>
-        <input
-          placeholder="confirme senha"
-          type="password"
-          {...register("confirm_password")}
-        /> */}
         <TextInput
           secondary
           field={"confirm_password"}

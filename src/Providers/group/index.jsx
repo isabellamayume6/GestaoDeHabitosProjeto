@@ -66,6 +66,7 @@ export const GroupProvider = ({ children }) => {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
+        setUserGroup([...userGroup, response.data]);
         console.log("response createGroup:", response.data);
       })
       .catch((err) => console.log("Erro ao crear grupo!"));
