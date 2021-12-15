@@ -5,6 +5,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { toast } from "react-hot-toast";
 import { MainSi, FormSI } from "./StyledFormSI";
 import { useAuth } from "../../Providers/auth";
+import TextInput from "../TextInput";
 
 import Button from "../Button";
 
@@ -52,10 +53,19 @@ const FormSignIn = () => {
       <div className="log">
         <h1>Login</h1>
         <FormSI onSubmit={handleSubmit(onSubmit)}>
-          <span>{errors.username?.message}</span>
-          <input placeholder="Digite seu username" {...register("username")} />
-          <span>{errors.password?.message}</span>
-          <input placeholder="Digite sua senha" {...register("password")} />
+          <TextInput
+            field={"username"}
+            error={errors.username?.message}
+            label="Digite o seu username"
+            register={register}
+          />
+          <TextInput
+            field={"password"}
+            error={errors.password?.message}
+            label="Digite sua senha"
+            register={register}
+            type="password"
+          />
           <Button type="submit">Logar</Button>
         </FormSI>
         <div className="footer">

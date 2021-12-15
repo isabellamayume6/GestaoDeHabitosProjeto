@@ -7,10 +7,14 @@ export const InputContainer = styled.div`
       : props.secondary
       ? props.theme.colors.secondary.dark
       : props.theme.colors.primary.light};
-  /* border-radius: 4px; */
-  width: 100%;
+  /* border-radius: 4px;  */
+  width: 260px;
+  height: 75px;
+  position: relative;
 
   .error-message {
+    position: absolute;
+    bottom: 8px;
     color: ${(props) => props.theme.colors.red.normal};
     padding-top: 0.4em;
     display: block;
@@ -38,7 +42,7 @@ export const InputContainer = styled.div`
       background: ${(props) =>
         props.secondary
           ? props.theme.colors.secondary.light
-          : props.theme.colors.primary.normal};
+          : props.theme.colors.primary.ze};
       padding: 0.7em;
       /* border-radius: 5px; */
       width: 100%;
@@ -86,7 +90,7 @@ export const InputContainer = styled.div`
       background: ${(props) =>
         props.secondary
           ? props.theme.colors.secondary.light
-          : props.theme.colors.primary.normal};
+          : props.theme.colors.primary.ze};
       cursor: default;
     }
   }

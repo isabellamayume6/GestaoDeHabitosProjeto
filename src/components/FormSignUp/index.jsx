@@ -5,8 +5,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useHistory } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import Button from "../Button";
-import { ContainerForm, MainDesktop } from './StyledForm.js'
-
+import { ContainerForm, MainDesktop } from "./StyledForm.js";
+import TextInput from "../TextInput";
 
 const FormSignUp = () => {
   const schema = yup.object().shape({
@@ -15,7 +15,10 @@ const FormSignUp = () => {
       .string()
       .email("e-mail inválido!")
       .required("Campo obrigatório!"),
-    password: yup.string().required("Senha obrigatória!").min(6),
+    password: yup
+      .string()
+      .required("Senha obrigatória!")
+      .min(6, "Minimo de 6 caracteres"),
     confirm_password: yup
       .string()
       .oneOf([yup.ref("password"), null], "senhas diferentes")
@@ -43,25 +46,54 @@ const FormSignUp = () => {
   };
   return (
     <MainDesktop>
-      <ContainerForm onSubmit={handleSubmit(onSubmit)} >
+      <ContainerForm onSubmit={handleSubmit(onSubmit)}>
         <h1>Cadastre-se</h1>
-        <span>{errors.username?.message}</span>
-        <input placeholder="Nome" {...register("username")} />
-        <span>{errors.email?.message}</span>
-        <input placeholder="e-mail" {...register("email")} />
-        <span>{errors.password?.message}</span>
-        <input placeholder="senha" type="password" {...register("password")} />
-        <span>{errors.confirm_password?.message}</span>
+        <TextInput
+          secondary
+          field={"username"}
+          error={errors.username?.message}
+          label="Digite o seu username"
+          register={register}
+        />
+        <TextInput
+          secondary
+          field={"e-mail"}
+          error={errors.email?.message}
+          label="Digite o seu e-mail"
+          register={register}
+        />
+        {/* <span>{errors.password?.message}</span>
+        <input placeholder="senha" type="password" {...register("password")} /> */}
+        <TextInput
+          secondary
+          field={"password"}
+          error={errors.password?.message}
+          label="Digite o sua senha"
+          register={register}
+        />
+        {/* <span>{errors.confirm_password?.message}</span>
         <input
           placeholder="confirme senha"
           type="password"
           {...register("confirm_password")}
+        /> */}
+        <TextInput
+          secondary
+          field={"confirm_password"}
+          error={errors.confirm_password?.message}
+          label="Confirme sua senha"
+          register={register}
         />
-        <Button type="submit" secondary>Cadastrar</Button>
+        <Button type="submit" secondary>
+          Cadastrar
+        </Button>
         <p>Já possui uma conta?</p>
-        <Button onClick={() => history.push('/')}>Entrar</Button>
-      </ContainerForm >
-      <img src='https://cdn.discordapp.com/attachments/842187276359434273/920022668093317150/imagesignin.png' alt='seila' />
+        <Button onClick={() => history.push("/")}>Entrar</Button>
+      </ContainerForm>
+      <img
+        src="https://cdn.discordapp.com/attachments/842187276359434273/920022668093317150/imagesignin.png"
+        alt="seila"
+      />
     </MainDesktop>
   );
 };
