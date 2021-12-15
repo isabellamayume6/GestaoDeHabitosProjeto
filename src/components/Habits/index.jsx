@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useAuth } from "../../Providers/auth";
 import { useHabits } from "../../Providers/habits";
+import { CardHabits } from "./styles.js"
 import Card from "../Card";
 
 const HabitContainer = () => {
@@ -13,18 +14,13 @@ const HabitContainer = () => {
 
   console.log("allHabits", allHabits);
   return (
-    <div className="habits">
-      <h2>Hábitos</h2>
-      <ul>
-        {allHabits.map((item) => {
-          return (
-            <li key={item.id}>
-              <Card secondary={false} isGroup={false} info={item} />
-            </li>
-          );
-        })}
-      </ul>
-    </div>
+    <CardHabits >
+      {allHabits.map((item) => {
+        return (
+          <Card secondary={false} isGroup={false} info={item} key={item.id} />
+        );
+      })}
+    </CardHabits >
   );
 };
 

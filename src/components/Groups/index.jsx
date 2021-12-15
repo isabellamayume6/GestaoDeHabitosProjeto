@@ -2,6 +2,7 @@ import { useGroup } from "../../Providers/group";
 import { useState, useEffect } from "react";
 import { useAuth } from "../../Providers/auth";
 import Card from "../Card";
+import { CardGroups } from './styles.js'
 
 const GroupContainer = () => {
   const { getUserGroups, userGroup, getAllGroups } = useGroup();
@@ -13,19 +14,15 @@ const GroupContainer = () => {
   }, []);
 
   return (
-    <div className="habits">
-      <h2>Grupos</h2>
-      <ul>
-        {userGroup.map((item) => {
-          return (
-            <li key={item.id}>
-              <Card secondary={false} isGroup={true} info={item} />
-            </li>
-          );
-        })}
-      </ul>
-    </div>
-  );
+    <CardGroups>
+
+      {userGroup.map((item) => {
+        return (
+          <Card secondary={true} isGroup={true} info={item} key={item.id} />
+        )
+      })}
+    </CardGroups>
+  )
 };
 
 export default GroupContainer;

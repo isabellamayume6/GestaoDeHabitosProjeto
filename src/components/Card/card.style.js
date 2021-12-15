@@ -12,7 +12,8 @@ export const Container = styled.div`
   justfy-content: center;
   align-items: center;
   gap: 20px;
-  padding: 15px 30px;
+  padding: 10px 10px;
+  margin:10px 0px;
   box-sizing: border-box;
   .content {
     width: 100%;
@@ -27,7 +28,7 @@ export const Container = styled.div`
     font-size: 18px;
   }
   img {
-    width: 87px;
+    width: 50px;
     aspect-ratio: 1;
     border-radius: 50%;
   }
@@ -54,11 +55,12 @@ export const Header = styled.div`
   flex-wrap: wrap;
   .title {
     text-align: left;
-    font-size: 28px;
+    font-size: 18px;
     margin: 0 10px 0 0;
   }
   .pills {
     display: flex;
+    flex-direction:row;
     align-items: center;
   }
   svg {

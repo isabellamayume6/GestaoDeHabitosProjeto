@@ -11,7 +11,7 @@ import { useGroup } from "../../Providers/group";
 
 import jwt_decoded from "jwt-decode";
 
-const Modal = ({ isGroup }) => {
+const Modal = ({ isGroup, modalOn }) => {
   const { token } = useAuth();
   const { createHabit } = useHabits();
   const { createGroup } = useGroup();
@@ -55,60 +55,64 @@ const Modal = ({ isGroup }) => {
   };
 
   return (
-    <div>
-      <button>X</button>
-      {!isGroup ? (
-        <form onSubmit={handleSubmit(onSubmitHabit)}>
-          <TextInput
-            label="Título"
-            field={"title"}
-            register={register}
-            error={errors.title?.message}
-          />
-          <TextInput
-            label="Categoria"
-            field={"category"}
-            register={register}
-            error={errors.category?.message}
-          />
-          <TextInput
-            label="Dificuldade"
-            field={"difficulty"}
-            register={register}
-            error={errors.difficulty?.message}
-          />
-          <TextInput
-            label="Frequência"
-            field={"frequency"}
-            register={register}
-            error={errors.frequency?.message}
-          />
-          <Button type="submit">Criar</Button>
-        </form>
-      ) : (
-        <form onSubmit={handleSubmit(onSubmitGroup)}>
-          <TextInput
-            label="Nome do Grupo"
-            field={"name"}
-            register={register}
-            error={errors.name?.message}
-          />
-          <TextInput
-            label="Descrição"
-            field={"description"}
-            register={register}
-            error={errors.description?.message}
-          />
-          <TextInput
-            label="Categoria"
-            field={"category"}
-            register={register}
-            error={errors.category?.message}
-          />
-          <Button type="submit">Criar</Button>
-        </form>
-      )}
-    </div>
+    modalOn === true ? (
+      <div >
+        <button>X</button>
+        {
+          !isGroup ? (
+            <form onSubmit={handleSubmit(onSubmitHabit)}>
+              <TextInput
+                label="Título"
+                field={"title"}
+                register={register}
+                error={errors.title?.message}
+              />
+              <TextInput
+                label="Categoria"
+                field={"category"}
+                register={register}
+                error={errors.category?.message}
+              />
+              <TextInput
+                label="Dificuldade"
+                field={"difficulty"}
+                register={register}
+                error={errors.difficulty?.message}
+              />
+              <TextInput
+                label="Frequência"
+                field={"frequency"}
+                register={register}
+                error={errors.frequency?.message}
+              />
+              <Button type="submit">Criar</Button>
+            </form>
+          ) : (
+            <form onSubmit={handleSubmit(onSubmitGroup)}>
+              <TextInput
+                label="Nome do Grupo"
+                field={"name"}
+                register={register}
+                error={errors.name?.message}
+              />
+              <TextInput
+                label="Descrição"
+                field={"description"}
+                register={register}
+                error={errors.description?.message}
+              />
+              <TextInput
+                label="Categoria"
+                field={"category"}
+                register={register}
+                error={errors.category?.message}
+              />
+              <Button type="submit">Criar</Button>
+            </form>
+          )
+        }
+      </div>
+    ) : (<></>)
   );
 };
 
