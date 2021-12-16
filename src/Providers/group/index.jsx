@@ -1,6 +1,7 @@
 import { createContext, useState, useContext } from "react";
 import api from "../../services/Api";
 import { useAuth } from "../auth";
+import { toast } from "react-hot-toast";
 
 export const GroupContext = createContext();
 
@@ -11,19 +12,25 @@ export const GroupProvider = ({ children }) => {
   const [searchedGroups, setSearchedGroups] = useState([]);
 
   const { token } = useAuth();
+  console.log(token);
 
-  const getAllGroups = (id) => {
+  const getAllGroups = () => {
     api
       .get("/groups/")
       .then((response) => {
-        console.log("response getAllGroups", response);
         setAllGroups(response.data.results);
-        const groups = response.data.results.filter(
-          (item) => item.creator === id
-        );
-        setMyGroups(groups);
       })
       .catch((err) => console.log("Erro ao pegar todos os grupos!"));
+  };
+
+  const searchGroups = (search) => {
+    api
+      .get(`/groups/?search=${search}`)
+      .then((response) => {
+        console.log(response.data.results);
+        setSearchedGroups(response.data.results);
+      })
+      .catch((err) => console.log("erro search", err));
   };
 
   const getUserGroups = (token, setLoading) => {
@@ -32,8 +39,9 @@ export const GroupProvider = ({ children }) => {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
-        setLoading(false);
-        // console.log("response getUserGroups:", response.data);
+        if (!!setLoading) {
+          setLoading(false);
+        }
         setUserGroup(response.data);
       })
       .catch((err) => console.log("Erro ao pegar os grupos do usuário!"));
@@ -91,8 +99,9 @@ export const GroupProvider = ({ children }) => {
       })
       .then((response) => {
         console.log("response subscribeGroup:", response);
+        getAllGroups();
       })
-      .catch((err) => console.log("Erro ao se inscrver no grupo!"));
+      .catch((err) => toast.error("Usuário já inscrito!"));
   };
 
   const unsubscribeGroup = (groupId) => {
@@ -121,6 +130,8 @@ export const GroupProvider = ({ children }) => {
         subscribeGroup,
         unsubscribeGroup,
         myGroups,
+        searchGroups,
+        searchedGroups,
       }}
     >
       {children}

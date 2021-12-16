@@ -25,10 +25,12 @@ export const HabitsProvider = ({ children }) => {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then((response) => {
-        setLoading(false);
-        return setAllHabits(response.data);
+        if (!!setLoading) {
+          setLoading(false);
+        }
+        setAllHabits(response.data);
       })
-      .catch((err) => console.log("Erro ao pegar hábitos!"));
+      .catch((err) => console.log(err));
   };
 
   const updateHabit = (token, data, habitId) => {
