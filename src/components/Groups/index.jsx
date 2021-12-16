@@ -27,17 +27,16 @@ const GroupContainer = () => {
     unsubscribeGroup(id);
   };
 
-  const showInfo = () => {};
+  const showInfo = () => { };
 
   return (
     <CardGroups>
       {!modalOnGroups ? (
         <>
-          <Button onClick={createForm}>+</Button>
+          <button onClick={createForm}>Adicionar</button>
           {userGroup.map((item) => {
             return (
               <>
-                <button onClick={() => unsubscribe(item.id)}>Sair</button>
                 <Card
                   onClick={showInfo}
                   secondary={true}
@@ -45,14 +44,16 @@ const GroupContainer = () => {
                   info={item}
                   key={item.id}
                 />
+                <button onClick={() => unsubscribe(item.id)}>Sair</button>
               </>
             );
           })}
         </>
       ) : (
         <Modal isGroup={true} />
-      )}
-    </CardGroups>
+      )
+      }
+    </CardGroups >
   );
 };
 

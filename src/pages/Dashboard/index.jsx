@@ -17,7 +17,7 @@ const Dashboard = () => {
     <>
       {/* <Modal isGroup={isGroup} modalOn={modalOn} /> */}
       <Header />
-      <Group>
+      <Group showHabits={showHabits}>
         <button onClick={() => setShowHabits(true)}>Meus hábitos</button>
         <button onClick={() => setShowHabits(false)}>Meus grupos</button>
       </Group>

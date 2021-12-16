@@ -1,7 +1,9 @@
 import { useState } from "react";
 import Button from "../Button";
 import TextInput from "../TextInput";
+import { FiSearch } from 'react-icons/fi'
 import { useUtilits } from "../../Providers/utilits";
+import { HeaderCard, DivSearch } from './styledHeader.js'
 
 const Header = () => {
   const { setInfo, search, setSearch } = useUtilits();
@@ -11,17 +13,24 @@ const Header = () => {
   };
 
   return (
-    <header>
+    <HeaderCard>
       <div className="User">
-        <img alt="user"></img>
+        <img alt="user" src="https://unsplash.it/50/50"></img>
       </div>
-      <input
-        label={"Pesquisar"}
-        value={search}
-        onChange={(event) => setSearch(event.target.value)}
-      />
-      <Button onClick={result}>Pesquisar</Button>
-    </header>
+      <DivSearch>
+        <input
+          label={"Pesquisar"}
+          value={search}
+          onChange={(event) => setSearch(event.target.value)}
+          placeholder='Pequisar'
+        />
+        <button onClick={result}>
+          <FiSearch size={20} color='black' />
+
+        </button>
+      </DivSearch>
+    </HeaderCard>
+
   );
 };
 

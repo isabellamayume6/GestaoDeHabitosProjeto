@@ -33,17 +33,17 @@ const HabitContainer = () => {
     <CardHabits>
       {!modalOnHabits ? (
         <>
-          <Button onClick={createForm}>+</Button>
+          <button onClick={createForm}>Adicionar</button>
           {allHabits.map((item) => {
             return (
               <>
-                <button onClick={() => remove(item.id)}>Deletar</button>
                 <Card
                   secondary={false}
                   isGroup={false}
                   info={item}
                   key={item.id}
                 />
+                <button onClick={() => remove(item.id)}>Deletar</button>
               </>
             );
           })}
