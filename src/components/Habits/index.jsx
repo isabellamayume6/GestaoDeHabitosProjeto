@@ -7,7 +7,6 @@ import { CardHabits } from "./styles.js";
 
 import Card from "../Card";
 import Modal from "../Modal";
-import Button from "../Button";
 
 const HabitContainer = () => {
   const { token } = useAuth();
@@ -24,11 +23,9 @@ const HabitContainer = () => {
   };
 
   const remove = (id) => {
-    console.log(id);
     deleteHabit(id);
   };
 
-  console.log("allHabits", allHabits);
   return (
     <CardHabits>
       {!modalOnHabits ? (

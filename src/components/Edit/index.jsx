@@ -5,8 +5,6 @@ import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 
-import jwt_decoded from "jwt-decode";
-
 import { useAuth } from "../../Providers/auth";
 import { useHabits } from "../../Providers/habits";
 import { useGroup } from "../../Providers/group";
@@ -17,10 +15,6 @@ const Edit = ({ isHabit }) => {
   const { updateHabit, deleteHabit } = useHabits();
   const { updateGroup, unsubscribeGroup } = useGroup();
   const { setModalEdit, id } = useUtilits();
-
-  console.log("teste id", id);
-
-  const userId = jwt_decoded(token).user_id;
 
   const habitSchema = yup.object().shape({
     achieved: yup.string().required("Não sei"),
@@ -42,17 +36,13 @@ const Edit = ({ isHabit }) => {
   });
 
   const onSubmitHabit = (data) => {
-    console.log(id);
-    console.log(token);
     data.achieved = true;
     data.how_much_achieved = 100;
-    console.log("mudei", data);
     updateHabit(token, data, id);
     setModalEdit(false);
   };
 
   const onSubmitGroup = (data) => {
-    console.log("Grupo modificado");
     updateGroup(token, data, id);
     setModalEdit(false);
   };

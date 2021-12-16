@@ -42,10 +42,8 @@ const FormSignIn = () => {
         defineUser(token);
       })
       .catch((err) => {
-        console.log(err);
         toast.error("Nome do usuário ou senha inválidos!");
       });
-    console.log(data);
   };
 
   return (
