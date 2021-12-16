@@ -22,14 +22,17 @@ const Dashboard = () => {
 
   return (
     <>
-      {/* <Modal isGroup={isGroup} modalOn={modalOn} /> */}
       <Header />
       <Group>
         <button onClick={() => setShowHabits(true)}>Meus hábitos</button>
         <button onClick={() => setShowHabits(false)}>Meus grupos</button>
       </Group>
       <MainDashboard showHabits={showHabits}>
-        {showHabits === true ? <HabitContainer /> : <GroupContainer />}
+        {info ? (
+          <SearchResult />
+        ) : (
+          <>{showHabits === true ? <HabitContainer /> : <GroupContainer />}</>
+        )}
       </MainDashboard>
     </>
   );
