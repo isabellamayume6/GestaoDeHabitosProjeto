@@ -9,6 +9,7 @@ export const UtilitsProvider = ({ children }) => {
   const [modalOnHabits, setModalOnHabits] = useState(false);
   const [modalOnGroups, setModalOnGroups] = useState(false);
   const [showHabits, setShowHabits] = useState(true);
+
   const [info, setInfo] = useState(false);
 
   const [search, setSearch] = useState("");

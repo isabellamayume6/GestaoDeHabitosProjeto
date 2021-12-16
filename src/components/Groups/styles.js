@@ -13,4 +13,9 @@ export const CardGroups = styled.div`
       border:none;
       background-color:transparent;
     }
+    width: 90%;
+    @media (min-width:768px){
+      overflow-y: scroll;
+      max-height: 440px;
+    }
 `;

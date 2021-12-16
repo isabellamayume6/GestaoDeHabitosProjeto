@@ -13,13 +13,40 @@ export const Container = styled.div`
   align-items: center;
   gap: 20px;
   padding: 10px 10px;
-  margin:10px 0px;
+  margin: 10px 0px;
   box-sizing: border-box;
   .content {
     width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
+  }
+  .controls {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-self: stretch;
+    .control {
+      font-size: 20px;
+    }
+    .control.trash,
+    .control.exit {
+      color: ${(props) => props.theme.colors.red.normal};
+    }
+    .control.enter {
+      color: ${(props) => props.theme.colors.green.dark};
+    }
+    .control.view {
+      color ${(props) => props.theme.colors.primary.dark}
+    }
+    button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      &:last-of-type {
+        margin-top: auto;
+      }
+    }
   }
   .details {
     display: flex;
@@ -60,7 +87,7 @@ export const Header = styled.div`
   }
   .pills {
     display: flex;
-    flex-direction:row;
+    flex-direction: row;
     align-items: center;
   }
   svg {

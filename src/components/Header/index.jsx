@@ -1,7 +1,5 @@
-import { useState } from "react";
-import Button from "../Button";
-import TextInput from "../TextInput";
 import { FiSearch } from 'react-icons/fi'
+import { MdOutlineExitToApp } from 'react-icons/md'
 import { useUtilits } from "../../Providers/utilits";
 import { useAuth } from "../../Providers/auth";
 import { useGroup } from "../../Providers/group";
@@ -19,8 +17,8 @@ const Header = () => {
 
   return (
     <HeaderCard>
-      <div className="User">
-        <img alt="user" src="https://unsplash.it/50/50"></img>
+      <div className="User" onClick={logout}>
+        <MdOutlineExitToApp size={30} color={'#FF3978'} />
       </div>
       <DivSearch>
         <input
@@ -33,7 +31,7 @@ const Header = () => {
           <FiSearch size={20} color='black' />
         </button>
       </DivSearch>
-    </HeaderCard>
+    </HeaderCard >
 
   );
 };

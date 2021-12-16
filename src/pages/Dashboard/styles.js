@@ -1,15 +1,37 @@
 import styled from "styled-components";
 
 export const MainDashboard = styled.main`
-height:100vh;
- background: ${(props) =>
-    props.showHabits
-      ? props.theme.colors.secondary.light
-      : props.theme.colors.primary.normal};
+height:90.5vh;
+    background: ${(props) =>
+        props.showHabits
+        ? props.theme.colors.secondary.light
+        : props.theme.colors.primary.normal};
+            .desktop{
+                display:none;
+            }
+    @media (min-width: 768px){
+        background-color:#DEE2FF;
+        .mobile{
+            display:none;
+        }
+        .desktop{
+            display:flex;
+            flex-direction:row;
+            justify-content:space-evenly;
+            padding-top:20px;
+            
+                .habitosCard{
+                    width:40%;
+                }
+                .gruposCard{
+                    width: 40%;
+                }
+        }
+    }
 `
 
 export const Group = styled.div`
-padding-top:5px;
+    padding-top:5px;
     background: ${(props) =>
         props.showHabits
         ? props.theme.colors.secondary.light
@@ -31,5 +53,7 @@ padding-top:5px;
             ? props.theme.colors.secondary.light
             : props.theme.colors.primary.normal};
         }
-    
-    `
+    @media (min-width:768px){
+        display:none;
+    }
+`
