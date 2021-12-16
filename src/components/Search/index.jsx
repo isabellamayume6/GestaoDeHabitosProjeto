@@ -4,12 +4,13 @@ import Button from "../Button";
 import Card from "../Card";
 
 const SearchResult = () => {
-  const { searchedGroups, subscribeGroup } = useGroup();
+  const { searchedGroups, subscribeGroup, getAllGroups } = useGroup();
   const { setInfo } = useUtilits();
 
   const subscribe = (id) => {
     subscribeGroup(id);
     setInfo(false);
+    getAllGroups();
   };
 
   return (

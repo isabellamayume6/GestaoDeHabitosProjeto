@@ -6,8 +6,6 @@ export const UtilitsProvider = ({ children }) => {
   const [modal, setModal] = useState(false);
   const [modalEdit, setModalEdit] = useState(false);
   const [id, setId] = useState(0);
-  const [isHabit, setIsHabit] = useState("");
-  const [isGroup, setIsGroup] = useState("");
   const [modalOnHabits, setModalOnHabits] = useState(false);
   const [modalOnGroups, setModalOnGroups] = useState(false);
   const [showHabits, setShowHabits] = useState(true);
@@ -24,10 +22,6 @@ export const UtilitsProvider = ({ children }) => {
         setModalEdit,
         id,
         setId,
-        isHabit,
-        setIsHabit,
-        isGroup,
-        setIsGroup,
         showHabits,
         setShowHabits,
         modalOnHabits,
