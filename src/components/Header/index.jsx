@@ -1,6 +1,3 @@
-import { useState } from "react";
-import Button from "../Button";
-import TextInput from "../TextInput";
 import { FiSearch } from 'react-icons/fi'
 import { MdOutlineExitToApp } from 'react-icons/md'
 import { useUtilits } from "../../Providers/utilits";

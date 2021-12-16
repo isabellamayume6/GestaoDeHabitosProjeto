@@ -26,11 +26,30 @@ const Dashboard = () => {
         <button onClick={() => setShowHabits(false)}>Meus grupos</button>
       </Group>
       <MainDashboard showHabits={showHabits}>
-        {info ? (
-          <SearchResult />
-        ) : (
-          <>{showHabits === true ? <HabitContainer /> : <GroupContainer />}</>
-        )}
+        <div className='mobile'>
+          {info ? (
+            <SearchResult />
+          ) : (
+            <>{showHabits === true ? <HabitContainer /> : <GroupContainer />}</>
+          )}
+        </div>
+        <div className='desktop'>
+          {info ? (
+            <SearchResult />
+          ) : (
+            <>
+              <div className='habitosCard'>
+                < HabitContainer />
+              </div>
+              <div className='gruposCard'>
+                <GroupContainer />
+              </div>
+
+            </>
+
+          )}
+        </div>
+
       </MainDashboard>
     </>
   );

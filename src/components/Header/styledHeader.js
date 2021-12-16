@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const HeaderCard = styled.header`
-    background-color:${(props) => props.theme.colors.secondary.light};
+    background-color:#EAC8CA;
     padding:10px;
     display:flex;
     flex-direction:row;
@@ -11,6 +11,10 @@ export const HeaderCard = styled.header`
         .User{
             transform:rotateY(180deg);
         }
+    @media (min-width: 768px){
+        justify-content:space-between;
+        padding:10px 30px;
+    }
 `
 export const DivSearch = styled.div`
     background-color:${(props) => props.theme.colors.primary.light};
