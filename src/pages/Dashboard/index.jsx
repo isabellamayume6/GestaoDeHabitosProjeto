@@ -2,9 +2,7 @@ import HabitContainer from "../../components/Habits";
 import GroupContainer from "../../components/Groups";
 import Modal from "../../components/Modal";
 import SearchResult from "../../components/Search";
-
 import Header from "../../components/Header";
-
 import { useState } from "react";
 import { MainDashboard } from "./styles.js";
 import { Group } from "./styles.js";
@@ -23,7 +21,7 @@ const Dashboard = () => {
   return (
     <>
       <Header />
-      <Group>
+      <Group showHabits={showHabits}>
         <button onClick={() => setShowHabits(true)}>Meus hábitos</button>
         <button onClick={() => setShowHabits(false)}>Meus grupos</button>
       </Group>

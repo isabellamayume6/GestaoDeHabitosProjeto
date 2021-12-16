@@ -24,11 +24,10 @@ export default function Card({ secondary = false, isGroup = false, info }) {
     title = info.name;
   }
   return (
-    <Container className="card" secondary={secondary}>
+    <Container className="card" secondary={secondary} >
       <img
         className="card__icon"
-        src="https://unsplash.it/640/640
-"
+        src="https://unsplash.it/640/640"
         alt=""
       />
       <Content className="card__content">
@@ -82,6 +81,6 @@ export default function Card({ secondary = false, isGroup = false, info }) {
           </Footer>
         )}
       </Content>
-    </Container>
+    </Container >
   );
 }
