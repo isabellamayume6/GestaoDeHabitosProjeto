@@ -1,9 +1,10 @@
 import { useGroup } from "../../Providers/group";
 import { useState, useEffect } from "react";
 import { useAuth } from "../../Providers/auth";
+import { FiPlus } from 'react-icons/fi'
+
 import Card from "../Card";
 import Modal from "../Modal";
-import Button from "../Button";
 import { CardGroups } from "./styles.js";
 import { useUtilits } from "../../Providers/utilits";
 
@@ -28,36 +29,35 @@ const GroupContainer = () => {
     unsubscribeGroup(id);
   };
 
-  const showInfo = () => {};
+  const showInfo = () => { };
 
   return (
     <CardGroups>
       {!modalOnGroups ? (
         <>
-          <Button onClick={createForm}>+</Button>
-          {loading ? (
-            <> </>
-          ) : (
-            userGroup.map((item) => {
-              return (
-                <>
-                  <button onClick={() => unsubscribe(item.id)}>Sair</button>
-                  <Card
-                    onClick={showInfo}
-                    secondary={true}
-                    isGroup={true}
-                    info={item}
-                    key={item.id}
-                  />
-                </>
-              );
-            })
-          )}
+          <button onClick={createForm} className='adc'>
+            <FiPlus size={25} color='black' />
+          </button>
+          {userGroup.map((item) => {
+            return (
+              <>
+                <Card
+                  onClick={showInfo}
+                  secondary={true}
+                  isGroup={true}
+                  info={item}
+                  key={item.id}
+                />
+                <button onClick={() => unsubscribe(item.id)}>Sair</button>
+              </>
+            );
+          })}
         </>
       ) : (
         <Modal isGroup={true} />
-      )}
-    </CardGroups>
+      )
+      }
+    </CardGroups >
   );
 };
 

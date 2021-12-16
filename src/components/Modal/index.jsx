@@ -1,5 +1,7 @@
 import TextInput from "../TextInput";
 import Button from "../Button";
+import { ModalForm, BoxModal } from './styleModal.js'
+import { MdOutlineClose } from 'react-icons/md'
 
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -66,60 +68,69 @@ const Modal = ({ isGroup }) => {
   };
 
   return (
-    <div>
-      <Button onClick={closeModal}>X</Button>
-      {!isGroup ? (
-        <form onSubmit={handleSubmit(onSubmitHabit)}>
-          <TextInput
-            label="Título"
-            field={"title"}
-            register={register}
-            error={errors.title?.message}
-          />
-          <TextInput
-            label="Categoria"
-            field={"category"}
-            register={register}
-            error={errors.category?.message}
-          />
-          <TextInput
-            label="Dificuldade"
-            field={"difficulty"}
-            register={register}
-            error={errors.difficulty?.message}
-          />
-          <TextInput
-            label="Frequência"
-            field={"frequency"}
-            register={register}
-            error={errors.frequency?.message}
-          />
-          <Button type="submit">Criar</Button>
-        </form>
-      ) : (
-        <form onSubmit={handleSubmit(onSubmitGroup)}>
-          <TextInput
-            label="Nome do Grupo"
-            field={"name"}
-            register={register}
-            error={errors.name?.message}
-          />
-          <TextInput
-            label="Descrição"
-            field={"description"}
-            register={register}
-            error={errors.description?.message}
-          />
-          <TextInput
-            label="Categoria"
-            field={"category"}
-            register={register}
-            error={errors.category?.message}
-          />
-          <Button type="submit">Criar</Button>
-        </form>
-      )}
-    </div>
+    <BoxModal isGroup={isGroup}>
+      <button onClick={closeModal} className='close'>
+        <MdOutlineClose size={25} color='black' />
+      </button>
+      {
+        !isGroup ? (
+          <ModalForm onSubmit={handleSubmit(onSubmitHabit)} >
+            <TextInput
+              secondary
+              label="Título"
+              field={"title"}
+              register={register}
+              error={errors.title?.message}
+            />
+            <TextInput
+              secondary
+              label="Categoria"
+              field={"category"}
+              register={register}
+              error={errors.category?.message}
+            />
+            <TextInput
+              secondary
+              label="Dificuldade"
+              field={"difficulty"}
+              register={register}
+              error={errors.difficulty?.message}
+            />
+            <TextInput
+              secondary
+              label="Frequência"
+              field={"frequency"}
+              register={register}
+              error={errors.frequency?.message}
+            />
+            <Button secondary type="submit">Criar</Button>
+          </ModalForm>
+        ) : (
+          <form onSubmit={handleSubmit(onSubmitGroup)}>
+            <TextInput
+
+              label="Nome do Grupo"
+              field={"name"}
+              register={register}
+              error={errors.name?.message}
+            />
+            <TextInput
+              label="Descrição"
+              field={"description"}
+              register={register}
+              error={errors.description?.message}
+            />
+            <TextInput
+              label="Categoria"
+              field={"category"}
+              register={register}
+              error={errors.category?.message}
+            />
+            <Button type="submit">Criar</Button>
+          </form>
+        )
+      }
+    </BoxModal >
   );
 };
 

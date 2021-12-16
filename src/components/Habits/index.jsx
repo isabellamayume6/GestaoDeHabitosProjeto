@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
-
+import { FiPlus } from 'react-icons/fi'
 import { useAuth } from "../../Providers/auth";
 import { useHabits } from "../../Providers/habits";
 import { useUtilits } from "../../Providers/utilits";
-
 import { CardHabits } from "./styles.js";
 
 import Card from "../Card";
@@ -34,24 +33,22 @@ const HabitContainer = () => {
     <CardHabits>
       {!modalOnHabits ? (
         <>
-          <Button onClick={createForm}>+</Button>
-          {loading ? (
-            <></>
-          ) : (
-            allHabits.map((item) => {
-              return (
-                <>
-                  <button onClick={() => remove(item.id)}>Deletar</button>
-                  <Card
-                    secondary={false}
-                    isGroup={false}
-                    info={item}
-                    key={item.id}
-                  />
-                </>
-              );
-            })
-          )}
+          <button className='ADC' onClick={createForm}>
+            <FiPlus size={25} color='black' />
+          </button>
+          {allHabits.map((item) => {
+            return (
+              <>
+                <Card
+                  secondary={false}
+                  isGroup={false}
+                  info={item}
+                  key={item.id}
+                />
+                <button onClick={() => remove(item.id)}>Deletar</button>
+              </>
+            );
+          })}
         </>
       ) : (
         <Modal isGroup={false} />
