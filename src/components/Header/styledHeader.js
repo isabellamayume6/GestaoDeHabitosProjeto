@@ -9,9 +9,7 @@ export const HeaderCard = styled.header`
     align-items:center;
     border-bottom:2px solid black;
         .User{
-            img{
-                border-radius:50%;
-            }
+            transform:rotateY(180deg);
         }
 `
 export const DivSearch = styled.div`
