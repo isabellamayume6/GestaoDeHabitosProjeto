@@ -40,12 +40,12 @@ const HabitContainer = () => {
             return (
               <>
                 <Card
+                  interactFunc={remove}
                   secondary={false}
                   isGroup={false}
                   info={item}
                   key={item.id}
                 />
-                <button onClick={() => remove(item.id)}>Deletar</button>
               </>
             );
           })}
