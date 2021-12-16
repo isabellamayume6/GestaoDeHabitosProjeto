@@ -1,7 +1,7 @@
 import { useGroup } from "../../Providers/group";
 import { useState, useEffect } from "react";
 import { useAuth } from "../../Providers/auth";
-import { FiPlus } from 'react-icons/fi'
+import { FiPlus } from "react-icons/fi";
 
 import Card from "../Card";
 import Modal from "../Modal";
@@ -25,18 +25,17 @@ const GroupContainer = () => {
   };
 
   const unsubscribe = (id) => {
-    console.log(id);
     unsubscribeGroup(id);
   };
 
-  const showInfo = () => { };
+  const showInfo = () => {};
 
   return (
     <CardGroups>
       {!modalOnGroups ? (
         <>
-          <button onClick={createForm} className='adc'>
-            <FiPlus size={25} color='black' />
+          <button onClick={createForm} className="adc">
+            <FiPlus size={25} color="black" />
           </button>
           {userGroup.map((item) => {
             return (
@@ -55,9 +54,8 @@ const GroupContainer = () => {
         </>
       ) : (
         <Modal isGroup={true} />
-      )
-      }
-    </CardGroups >
+      )}
+    </CardGroups>
   );
 };
 
