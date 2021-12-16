@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import { useAuth } from "../../Providers/auth";
 import { useHabits } from "../../Providers/habits";
@@ -14,9 +14,10 @@ const HabitContainer = () => {
   const { token } = useAuth();
   const { modalOnHabits, setModalOnHabits } = useUtilits();
   const { getHabits, allHabits, deleteHabit } = useHabits();
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    getHabits(token);
+    getHabits(token, setLoading);
   }, []);
 
   const createForm = () => {
@@ -34,19 +35,23 @@ const HabitContainer = () => {
       {!modalOnHabits ? (
         <>
           <Button onClick={createForm}>+</Button>
-          {allHabits.map((item) => {
-            return (
-              <>
-                <button onClick={() => remove(item.id)}>Deletar</button>
-                <Card
-                  secondary={false}
-                  isGroup={false}
-                  info={item}
-                  key={item.id}
-                />
-              </>
-            );
-          })}
+          {loading ? (
+            <></>
+          ) : (
+            allHabits.map((item) => {
+              return (
+                <>
+                  <button onClick={() => remove(item.id)}>Deletar</button>
+                  <Card
+                    secondary={false}
+                    isGroup={false}
+                    info={item}
+                    key={item.id}
+                  />
+                </>
+              );
+            })
+          )}
         </>
       ) : (
         <Modal isGroup={false} />

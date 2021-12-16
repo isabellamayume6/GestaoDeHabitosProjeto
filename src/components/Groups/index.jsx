@@ -12,10 +12,11 @@ const GroupContainer = () => {
   const { modalOnGroups, setModalOnGroups } = useUtilits();
   const { getUserGroups, userGroup, getAllGroups, unsubscribeGroup } =
     useGroup();
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     getAllGroups(userId, token);
-    getUserGroups(token);
+    getUserGroups(token, setLoading);
   }, []);
 
   const createForm = () => {
@@ -34,20 +35,24 @@ const GroupContainer = () => {
       {!modalOnGroups ? (
         <>
           <Button onClick={createForm}>+</Button>
-          {userGroup.map((item) => {
-            return (
-              <>
-                <button onClick={() => unsubscribe(item.id)}>Sair</button>
-                <Card
-                  onClick={showInfo}
-                  secondary={true}
-                  isGroup={true}
-                  info={item}
-                  key={item.id}
-                />
-              </>
-            );
-          })}
+          {loading ? (
+            <> </>
+          ) : (
+            userGroup.map((item) => {
+              return (
+                <>
+                  <button onClick={() => unsubscribe(item.id)}>Sair</button>
+                  <Card
+                    onClick={showInfo}
+                    secondary={true}
+                    isGroup={true}
+                    info={item}
+                    key={item.id}
+                  />
+                </>
+              );
+            })
+          )}
         </>
       ) : (
         <Modal isGroup={true} />

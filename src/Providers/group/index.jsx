@@ -26,13 +26,14 @@ export const GroupProvider = ({ children }) => {
       .catch((err) => console.log("Erro ao pegar todos os grupos!"));
   };
 
-  const getUserGroups = () => {
+  const getUserGroups = (token, setLoading) => {
     api
       .get("/groups/subscriptions/", {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
-        console.log("response getUserGroups:", response.data);
+        setLoading(false);
+        // console.log("response getUserGroups:", response.data);
         setUserGroup(response.data);
       })
       .catch((err) => console.log("Erro ao pegar os grupos do usuário!"));
