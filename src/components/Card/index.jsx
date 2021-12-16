@@ -1,9 +1,14 @@
+import { useGroup } from "../../Providers/group";
 import {
   RiTodoFill,
   RiFocus2Line,
   RiCalendarEventFill,
   RiCheckboxCircleFill,
 } from "react-icons/ri";
+
+import { AiFillEye } from "react-icons/ai";
+import { ImEnter, ImExit } from "react-icons/im";
+import { BsFillTrashFill } from "react-icons/bs";
 
 import {
   Container,
@@ -16,20 +21,30 @@ import {
 
 const url = `https://avatars.dicebear.com/api/big-smile/`;
 
-export default function Card({ secondary = false, isGroup = false, info }) {
+export default function Card({
+  interactFunc,
+  viewFunc,
+  secondary = false,
+  isGroup = false,
+
+  info,
+}) {
+  const group = useGroup();
   let title = info.title;
   let users;
+  let groupIcon;
   if (isGroup) {
     users = info.users_on_group.slice(0, 4);
     title = info.name;
+    groupIcon = group.userGroup.some((group) => group.id === info.id) ? (
+      <ImExit className="control exit" />
+    ) : (
+      <ImEnter className="control enter" />
+    );
   }
   return (
-    <Container className="card" secondary={secondary} >
-      <img
-        className="card__icon"
-        src="https://unsplash.it/640/640"
-        alt=""
-      />
+    <Container className="card" secondary={secondary}>
+      <img className="card__icon" src="https://unsplash.it/640/640" alt="" />
       <Content className="card__content">
         <Header className="content__header">
           <h3 className="title">{title}</h3>
@@ -81,6 +96,16 @@ export default function Card({ secondary = false, isGroup = false, info }) {
           </Footer>
         )}
       </Content>
-    </Container >
+      <div className="controls">
+        {isGroup && (
+          <button onClick={viewFunc}>
+            {<AiFillEye className="control view" />}
+          </button>
+        )}
+        <button onClick={() => interactFunc(info.id)}>
+          {isGroup ? groupIcon : <BsFillTrashFill className="control trash" />}
+        </button>
+      </div>
+    </Container>
   );
 }
