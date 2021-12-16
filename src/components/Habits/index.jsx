@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { FiPlus } from 'react-icons/fi'
+import { FiPlus } from "react-icons/fi";
 import { useAuth } from "../../Providers/auth";
 import { useHabits } from "../../Providers/habits";
 import { useUtilits } from "../../Providers/utilits";
@@ -33,8 +33,8 @@ const HabitContainer = () => {
     <CardHabits>
       {!modalOnHabits ? (
         <>
-          <button className='ADC' onClick={createForm}>
-            <FiPlus size={25} color='black' />
+          <button className="ADC" onClick={createForm}>
+            <FiPlus size={25} color="black" />
           </button>
           {allHabits.map((item) => {
             return (
