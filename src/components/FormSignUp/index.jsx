@@ -68,6 +68,7 @@ const FormSignUp = () => {
           error={errors.password?.message}
           label="Digite o sua senha"
           register={register}
+          type='password'
         />
         <TextInput
           secondary
@@ -75,6 +76,7 @@ const FormSignUp = () => {
           error={errors.confirm_password?.message}
           label="Confirme sua senha"
           register={register}
+          type='password'
         />
         <Button type="submit" secondary>
           Cadastrar

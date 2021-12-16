@@ -1,4 +1,5 @@
 import { createContext, useState, useContext } from "react";
+import { get } from "react-hook-form";
 import Api from "../../services/Api";
 import { useAuth } from "../auth";
 
@@ -6,7 +7,7 @@ export const HabitsContext = createContext();
 
 export const HabitsProvider = ({ children }) => {
   const [allHabits, setAllHabits] = useState([]);
-  const { userId } = useAuth();
+  const { token, userId } = useAuth();
 
   const createHabit = (token, data) => {
     Api.post("/habits/", data, {
@@ -14,7 +15,7 @@ export const HabitsProvider = ({ children }) => {
     })
       .then((response) => {
         console.log("response createHabit:", response);
-        setAllHabits([...allHabits, response.data])
+        setAllHabits([...allHabits, response.data]);
       })
       .catch((err) => console.log("Erro ao criar hábito!"));
   };
@@ -38,11 +39,12 @@ export const HabitsProvider = ({ children }) => {
       .catch((err) => console.log("Erro ao modificar hábito!"));
   };
 
-  const deleteHabit = (token, habitId) => {
-    Api.delete(`/habits/${habitId}`, {
+  const deleteHabit = (habit_id) => {
+    console.log("fui chamado:", token);
+    Api.delete(`/habits/${habit_id}/`, {
       headers: { Authorization: `Bearer ${token}` },
     })
-      .then((response) => console.log("response deleteHabit:", response))
+      .then((response) => getHabits(token))
       .catch((err) => console.log("Erro ao deletar hábito!"));
   };
 

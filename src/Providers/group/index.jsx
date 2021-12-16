@@ -8,6 +8,7 @@ export const GroupProvider = ({ children }) => {
   const [allGroups, setAllGroups] = useState([]);
   const [userGroup, setUserGroup] = useState([]);
   const [myGroups, setMyGroups] = useState([]);
+  const [searchedGroups, setSearchedGroups] = useState([]);
 
   const { token } = useAuth();
 
@@ -95,11 +96,11 @@ export const GroupProvider = ({ children }) => {
 
   const unsubscribeGroup = (groupId) => {
     api
-      .post(`/groups/${groupId}/unsubscribe/`, {
+      .delete(`/groups/${groupId}/unsubscribe/`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
-        console.log("response unsubscribeGroup:", response);
+        getUserGroups(token);
       })
       .catch((err) => console.log("Erro ao se desinscrever do grupo!"));
   };

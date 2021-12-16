@@ -8,6 +8,7 @@ import * as yup from "yup";
 import { useAuth } from "../../Providers/auth";
 import { useHabits } from "../../Providers/habits";
 import { useGroup } from "../../Providers/group";
+import { useUtilits } from "../../Providers/utilits";
 
 import jwt_decoded from "jwt-decode";
 
@@ -15,6 +16,8 @@ const Modal = ({ isGroup }) => {
   const { token } = useAuth();
   const { createHabit } = useHabits();
   const { createGroup } = useGroup();
+
+  const { setModal, setModalOnHabits, setModalOnGroups } = useUtilits();
 
   const userId = jwt_decoded(token).user_id;
 
@@ -47,16 +50,24 @@ const Modal = ({ isGroup }) => {
     data.user = userId;
     console.log(data);
     createHabit(token, data);
+    setModalOnHabits(false);
   };
 
   const onSubmitGroup = (data) => {
     console.log("criar grupo");
     createGroup(data, token);
+    setModal(false);
+    setModalOnGroups(false);
+  };
+
+  const closeModal = () => {
+    setModalOnHabits(false);
+    setModalOnGroups(false);
   };
 
   return (
     <div>
-      <button>X</button>
+      <Button onClick={closeModal}>X</Button>
       {!isGroup ? (
         <form onSubmit={handleSubmit(onSubmitHabit)}>
           <TextInput
