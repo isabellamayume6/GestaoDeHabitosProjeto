@@ -1,8 +1,6 @@
 import HabitContainer from "../../components/Habits";
 import GroupContainer from "../../components/Groups";
-import Modal from "../../components/Modal";
 import Header from "../../components/Header";
-import { useState } from "react";
 import { MainDashboard } from "./styles.js";
 import { Group } from "./styles.js";
 import { useUtilits } from "../../Providers/utilits";
@@ -10,7 +8,7 @@ import { useAuth } from "../../Providers/auth";
 import { Redirect } from "react-router-dom";
 
 const Dashboard = () => {
-  const { isGroup, modalOn, showHabits, setShowHabits, info } = useUtilits();
+  const { showHabits, setShowHabits } = useUtilits();
   const { isLogged } = useAuth();
 
   if (!isLogged) {

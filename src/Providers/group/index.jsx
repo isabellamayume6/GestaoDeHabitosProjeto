@@ -12,7 +12,6 @@ export const GroupProvider = ({ children }) => {
   const [searchedGroups, setSearchedGroups] = useState([]);
 
   const { token } = useAuth();
-  console.log(token);
 
   const getAllGroups = () => {
     api
@@ -27,7 +26,6 @@ export const GroupProvider = ({ children }) => {
     api
       .get(`/groups/?search=${search}`)
       .then((response) => {
-        console.log(response.data.results);
         setSearchedGroups(response.data.results);
       })
       .catch((err) => console.log("erro search", err));
@@ -76,7 +74,6 @@ export const GroupProvider = ({ children }) => {
       })
       .then((response) => {
         setUserGroup([...userGroup, response.data]);
-        console.log("response createGroup:", response.data);
       })
       .catch((err) => console.log("Erro ao crear grupo!"));
   };
@@ -98,7 +95,6 @@ export const GroupProvider = ({ children }) => {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
-        console.log("response subscribeGroup:", response);
         getAllGroups();
       })
       .catch((err) => toast.error("Usuário já inscrito!"));

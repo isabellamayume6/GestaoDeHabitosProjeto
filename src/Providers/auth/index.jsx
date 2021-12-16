@@ -27,7 +27,6 @@ export const AuthProvider = ({ children }) => {
   };
 
   const logout = () => {
-    console.log("Foi");
     setToken("");
     setIsLogged(false);
     setUserId("");

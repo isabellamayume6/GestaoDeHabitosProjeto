@@ -2,6 +2,7 @@ import { useGroup } from "../../Providers/group";
 import { useState, useEffect } from "react";
 import { useAuth } from "../../Providers/auth";
 import { FiPlus } from "react-icons/fi";
+
 import { MdOutlineClose } from "react-icons/md";
 
 import Card from "../Card";
@@ -69,6 +70,7 @@ const GroupContainer = () => {
               <FiPlus size={25} color="black" />
             </button>
           )}
+
           {userGroup.map((item) => {
             return (
               <>

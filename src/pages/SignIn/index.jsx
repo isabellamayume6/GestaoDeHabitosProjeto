@@ -4,7 +4,6 @@ import { Redirect } from "react-router-dom";
 
 const SignIn = () => {
   const { isLogged } = useAuth();
-  console.log(isLogged);
   if (isLogged) {
     return <Redirect to="/dashboard" />;
   }

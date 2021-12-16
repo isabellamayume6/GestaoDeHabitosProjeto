@@ -34,15 +34,12 @@ const FormSignUp = () => {
     const data = { username, email, password };
     Api.post("/users/", data)
       .then((reponse) => {
-        console.log(reponse);
         toast.success("Cadastro feito com sucesso!");
         history.push("/");
       })
       .catch((err) => {
-        console.log(err, "aqui errado");
         toast.error("Tente novamente mais tarde.");
       });
-    console.log(data);
   };
   return (
     <MainDesktop>
@@ -68,7 +65,7 @@ const FormSignUp = () => {
           error={errors.password?.message}
           label="Digite o sua senha"
           register={register}
-          type='password'
+          type="password"
         />
         <TextInput
           secondary
@@ -76,7 +73,7 @@ const FormSignUp = () => {
           error={errors.confirm_password?.message}
           label="Confirme sua senha"
           register={register}
-          type='password'
+          type="password"
         />
         <Button type="submit" secondary>
           Cadastrar

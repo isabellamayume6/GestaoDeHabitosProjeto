@@ -1,7 +1,7 @@
 import TextInput from "../TextInput";
 import Button from "../Button";
-import { ModalForm, BoxModal } from './styleModal.js'
-import { MdOutlineClose } from 'react-icons/md'
+import { ModalForm, BoxModal } from "./styleModal.js";
+import { MdOutlineClose } from "react-icons/md";
 
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -22,8 +22,6 @@ const Modal = ({ isGroup }) => {
   const { setModal, setModalOnHabits, setModalOnGroups } = useUtilits();
 
   const userId = jwt_decoded(token).user_id;
-
-  console.log(userId);
 
   const habitSchema = yup.object().shape({
     title: yup.string().required("Título obrigatório."),
@@ -50,13 +48,11 @@ const Modal = ({ isGroup }) => {
     data.achieved = false;
     data.how_much_achieved = 0;
     data.user = userId;
-    console.log(data);
     createHabit(token, data);
     setModalOnHabits(false);
   };
 
   const onSubmitGroup = (data) => {
-    console.log("criar grupo");
     createGroup(data, token);
     setModal(false);
     setModalOnGroups(false);
@@ -69,68 +65,67 @@ const Modal = ({ isGroup }) => {
 
   return (
     <BoxModal isGroup={isGroup}>
-      <button onClick={closeModal} className='close'>
-        <MdOutlineClose size={25} color='black' />
+      <button onClick={closeModal} className="close">
+        <MdOutlineClose size={25} color="black" />
       </button>
-      {
-        !isGroup ? (
-          <ModalForm onSubmit={handleSubmit(onSubmitHabit)} >
-            <TextInput
-              secondary
-              label="Título"
-              field={"title"}
-              register={register}
-              error={errors.title?.message}
-            />
-            <TextInput
-              secondary
-              label="Categoria"
-              field={"category"}
-              register={register}
-              error={errors.category?.message}
-            />
-            <TextInput
-              secondary
-              label="Dificuldade"
-              field={"difficulty"}
-              register={register}
-              error={errors.difficulty?.message}
-            />
-            <TextInput
-              secondary
-              label="Frequência"
-              field={"frequency"}
-              register={register}
-              error={errors.frequency?.message}
-            />
-            <Button secondary type="submit">Criar</Button>
-          </ModalForm>
-        ) : (
-          <form onSubmit={handleSubmit(onSubmitGroup)}>
-            <TextInput
-
-              label="Nome do Grupo"
-              field={"name"}
-              register={register}
-              error={errors.name?.message}
-            />
-            <TextInput
-              label="Descrição"
-              field={"description"}
-              register={register}
-              error={errors.description?.message}
-            />
-            <TextInput
-              label="Categoria"
-              field={"category"}
-              register={register}
-              error={errors.category?.message}
-            />
-            <Button type="submit">Criar</Button>
-          </form>
-        )
-      }
-    </BoxModal >
+      {!isGroup ? (
+        <ModalForm onSubmit={handleSubmit(onSubmitHabit)}>
+          <TextInput
+            secondary
+            label="Título"
+            field={"title"}
+            register={register}
+            error={errors.title?.message}
+          />
+          <TextInput
+            secondary
+            label="Categoria"
+            field={"category"}
+            register={register}
+            error={errors.category?.message}
+          />
+          <TextInput
+            secondary
+            label="Dificuldade"
+            field={"difficulty"}
+            register={register}
+            error={errors.difficulty?.message}
+          />
+          <TextInput
+            secondary
+            label="Frequência"
+            field={"frequency"}
+            register={register}
+            error={errors.frequency?.message}
+          />
+          <Button secondary type="submit">
+            Criar
+          </Button>
+        </ModalForm>
+      ) : (
+        <form onSubmit={handleSubmit(onSubmitGroup)}>
+          <TextInput
+            label="Nome do Grupo"
+            field={"name"}
+            register={register}
+            error={errors.name?.message}
+          />
+          <TextInput
+            label="Descrição"
+            field={"description"}
+            register={register}
+            error={errors.description?.message}
+          />
+          <TextInput
+            label="Categoria"
+            field={"category"}
+            register={register}
+            error={errors.category?.message}
+          />
+          <Button type="submit">Criar</Button>
+        </form>
+      )}
+    </BoxModal>
   );
 };
 
