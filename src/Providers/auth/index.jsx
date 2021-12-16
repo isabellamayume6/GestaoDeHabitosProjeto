@@ -12,8 +12,9 @@ export const AuthProvider = ({ children }) => {
   // eslint-disable-next-line
   const [userId, setUserId] = useState("");
 
-  const defineUser = () => {
+  const defineUser = (token) => {
     const { user_id } = jwt_decode(token);
+    setToken(token);
     setUserId(user_id);
   };
 

@@ -8,13 +8,16 @@ import * as yup from "yup";
 import { useAuth } from "../../Providers/auth";
 import { useHabits } from "../../Providers/habits";
 import { useGroup } from "../../Providers/group";
+import { useUtilits } from "../../Providers/utilits";
 
 import jwt_decoded from "jwt-decode";
 
-const Modal = ({ isGroup, modalOn }) => {
+const Modal = ({ isGroup }) => {
   const { token } = useAuth();
   const { createHabit } = useHabits();
   const { createGroup } = useGroup();
+
+  const { setModal, setModalOnHabits, setModalOnGroups } = useUtilits();
 
   const userId = jwt_decoded(token).user_id;
 
@@ -47,72 +50,76 @@ const Modal = ({ isGroup, modalOn }) => {
     data.user = userId;
     console.log(data);
     createHabit(token, data);
+    setModalOnHabits(false);
   };
 
   const onSubmitGroup = (data) => {
     console.log("criar grupo");
     createGroup(data, token);
+    setModal(false);
+    setModalOnGroups(false);
+  };
+
+  const closeModal = () => {
+    setModalOnHabits(false);
+    setModalOnGroups(false);
   };
 
   return (
-    modalOn === true ? (
-      <div >
-        <button>X</button>
-        {
-          !isGroup ? (
-            <form onSubmit={handleSubmit(onSubmitHabit)}>
-              <TextInput
-                label="Título"
-                field={"title"}
-                register={register}
-                error={errors.title?.message}
-              />
-              <TextInput
-                label="Categoria"
-                field={"category"}
-                register={register}
-                error={errors.category?.message}
-              />
-              <TextInput
-                label="Dificuldade"
-                field={"difficulty"}
-                register={register}
-                error={errors.difficulty?.message}
-              />
-              <TextInput
-                label="Frequência"
-                field={"frequency"}
-                register={register}
-                error={errors.frequency?.message}
-              />
-              <Button type="submit">Criar</Button>
-            </form>
-          ) : (
-            <form onSubmit={handleSubmit(onSubmitGroup)}>
-              <TextInput
-                label="Nome do Grupo"
-                field={"name"}
-                register={register}
-                error={errors.name?.message}
-              />
-              <TextInput
-                label="Descrição"
-                field={"description"}
-                register={register}
-                error={errors.description?.message}
-              />
-              <TextInput
-                label="Categoria"
-                field={"category"}
-                register={register}
-                error={errors.category?.message}
-              />
-              <Button type="submit">Criar</Button>
-            </form>
-          )
-        }
-      </div>
-    ) : (<></>)
+    <div>
+      <Button onClick={closeModal}>X</Button>
+      {!isGroup ? (
+        <form onSubmit={handleSubmit(onSubmitHabit)}>
+          <TextInput
+            label="Título"
+            field={"title"}
+            register={register}
+            error={errors.title?.message}
+          />
+          <TextInput
+            label="Categoria"
+            field={"category"}
+            register={register}
+            error={errors.category?.message}
+          />
+          <TextInput
+            label="Dificuldade"
+            field={"difficulty"}
+            register={register}
+            error={errors.difficulty?.message}
+          />
+          <TextInput
+            label="Frequência"
+            field={"frequency"}
+            register={register}
+            error={errors.frequency?.message}
+          />
+          <Button type="submit">Criar</Button>
+        </form>
+      ) : (
+        <form onSubmit={handleSubmit(onSubmitGroup)}>
+          <TextInput
+            label="Nome do Grupo"
+            field={"name"}
+            register={register}
+            error={errors.name?.message}
+          />
+          <TextInput
+            label="Descrição"
+            field={"description"}
+            register={register}
+            error={errors.description?.message}
+          />
+          <TextInput
+            label="Categoria"
+            field={"category"}
+            register={register}
+            error={errors.category?.message}
+          />
+          <Button type="submit">Criar</Button>
+        </form>
+      )}
+    </div>
   );
 };
 
