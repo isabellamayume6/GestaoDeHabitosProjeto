@@ -20,12 +20,12 @@ export const HabitsProvider = ({ children }) => {
       .catch((err) => console.log("Erro ao criar hábito!"));
   };
 
-  const getHabits = (token) => {
+  const getHabits = (token, setLoading) => {
     Api.get("/habits/personal/", {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then((response) => {
-        // console.log("response getHabits:", response);
+        setLoading(false);
         return setAllHabits(response.data);
       })
       .catch((err) => console.log("Erro ao pegar hábitos!"));

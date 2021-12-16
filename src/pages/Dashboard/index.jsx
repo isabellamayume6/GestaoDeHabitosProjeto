@@ -9,9 +9,16 @@ import { useState } from "react";
 import { MainDashboard } from "./styles.js";
 import { Group } from "./styles.js";
 import { useUtilits } from "../../Providers/utilits";
+import { useAuth } from "../../Providers/auth";
+import { Redirect } from "react-router-dom";
 
 const Dashboard = () => {
   const { isGroup, modalOn, showHabits, setShowHabits, info } = useUtilits();
+  const { isLogged } = useAuth();
+
+  if (!isLogged) {
+    return <Redirect to="/" />;
+  }
 
   return (
     <>

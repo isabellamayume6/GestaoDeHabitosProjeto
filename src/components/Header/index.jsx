@@ -2,9 +2,11 @@ import { useState } from "react";
 import Button from "../Button";
 import TextInput from "../TextInput";
 import { useUtilits } from "../../Providers/utilits";
+import { useAuth } from "../../Providers/auth";
 
 const Header = () => {
   const { setInfo, search, setSearch } = useUtilits();
+  const { logout } = useAuth();
 
   const result = () => {
     setInfo(true);
@@ -21,6 +23,7 @@ const Header = () => {
         onChange={(event) => setSearch(event.target.value)}
       />
       <Button onClick={result}>Pesquisar</Button>
+      <Button onClick={logout}>Sair</Button>
     </header>
   );
 };
