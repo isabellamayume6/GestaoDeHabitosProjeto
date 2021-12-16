@@ -9,14 +9,27 @@ height:100vh;
 `
 
 export const Group = styled.div`
+padding-top:5px;
+    background: ${(props) =>
+        props.showHabits
+        ? props.theme.colors.secondary.light
+        : props.theme.colors.primary.normal};
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-evenly;
     align-items: center;
         button{
             width:150px;
             height:25px;
-            border:1px solid black;
+            border:none;
+            background: white;
+            text-decoration:underline;
+            font-weight:bold;
+            font-size:18px;
+            background: ${(props) =>
+            props.showHabits
+            ? props.theme.colors.secondary.light
+            : props.theme.colors.primary.normal};
         }
     
     `
