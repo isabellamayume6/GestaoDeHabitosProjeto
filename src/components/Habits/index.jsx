@@ -35,15 +35,13 @@ const HabitContainer = () => {
           </button>
           {allHabits.map((item) => {
             return (
-              <>
-                <Card
-                  secondary={false}
-                  isGroup={false}
-                  info={item}
-                  key={item.id}
-                />
-                <button onClick={() => remove(item.id)}>Deletar</button>
-              </>
+              <Card
+                interactFunc={remove}
+                secondary={false}
+                isGroup={false}
+                info={item}
+                key={item.id}
+              />
             );
           })}
         </>
