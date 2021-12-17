@@ -16,7 +16,6 @@ const GroupContainer = () => {
   const {
     getUserGroups,
     userGroup,
-    setUserGroup,
     getAllGroups,
     unsubscribeGroup,
     searchedGroups,
@@ -29,10 +28,6 @@ const GroupContainer = () => {
     getAllGroups(userId, token);
     getUserGroups(token, setLoading);
   }, []);
-
-  if (info) {
-    setUserGroup(searchedGroups);
-  }
 
   const createForm = () => {
     setModalOnGroups(true);
@@ -62,29 +57,50 @@ const GroupContainer = () => {
       {!modalOnGroups ? (
         <>
           {info ? (
-            <button onClick={close} className="adc">
-              <MdOutlineClose size={25} color="black" />
-            </button>
+            <>
+              <button onClick={close} className="adc">
+                <MdOutlineClose size={25} color="black" />
+              </button>
+              {searchedGroups.map((item) => {
+                return (
+                  <Card
+                    interactFunc={
+                      userGroup.some((group) => group.id === item.id)
+                        ? unsubscribe
+                        : subscribe
+                    }
+                    onClick={showInfo}
+                    secondary={true}
+                    isGroup={true}
+                    info={item}
+                    key={item.id}
+                  />
+                );
+              })}
+            </>
           ) : (
-            <button onClick={createForm} className="adc">
-              <FiPlus size={25} color="black" />
-            </button>
+            <>
+              <button onClick={createForm} className="adc">
+                <FiPlus size={25} color="black" />
+              </button>
+              {userGroup.map((item) => {
+                return (
+                  <Card
+                    interactFunc={
+                      userGroup.some((group) => group.id === item.id)
+                        ? unsubscribe
+                        : subscribe
+                    }
+                    onClick={showInfo}
+                    secondary={true}
+                    isGroup={true}
+                    info={item}
+                    key={item.id}
+                  />
+                );
+              })}
+            </>
           )}
-
-          {userGroup.map((item) => {
-            return (
-              <>
-                <Card
-                  interactFunc={info ? subscribe : unsubscribe}
-                  onClick={showInfo}
-                  secondary={true}
-                  isGroup={true}
-                  info={item}
-                  key={item.id}
-                />
-              </>
-            );
-          })}
         </>
       ) : (
         <Modal isGroup={true} />
