@@ -8,7 +8,6 @@ export const GroupContext = createContext();
 export const GroupProvider = ({ children }) => {
   const [allGroups, setAllGroups] = useState([]);
   const [userGroup, setUserGroup] = useState([]);
-  const [myGroups, setMyGroups] = useState([]);
   const [searchedGroups, setSearchedGroups] = useState([]);
 
   const { token } = useAuth();
@@ -27,6 +26,7 @@ export const GroupProvider = ({ children }) => {
       .get(`/groups/?search=${search}`)
       .then((response) => {
         setSearchedGroups(response.data.results);
+        setAllGroups(response.data.results);
       })
       .catch((err) => console.log("erro search", err));
   };
@@ -126,7 +126,6 @@ export const GroupProvider = ({ children }) => {
         updateGroup,
         subscribeGroup,
         unsubscribeGroup,
-        myGroups,
         searchGroups,
         searchedGroups,
       }}

@@ -11,8 +11,10 @@ const Header = () => {
   const { searchGroups } = useGroup();
 
   const result = () => {
-    setInfo(true);
-    searchGroups(search);
+    if (!!search) {
+      setInfo(true);
+      searchGroups(search);
+    }
   };
 
   return (
